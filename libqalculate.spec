@@ -4,17 +4,17 @@
 #
 Name     : libqalculate
 Version  : 2.6.2
-Release  : 2
+Release  : 3
 URL      : https://github.com/Qalculate/libqalculate/releases/download/v2.6.2/libqalculate-2.6.2.tar.gz
 Source0  : https://github.com/Qalculate/libqalculate/releases/download/v2.6.2/libqalculate-2.6.2.tar.gz
 Summary  : libqalculate
 Group    : Development/Tools
 License  : GPL-2.0
-Requires: libqalculate-bin
-Requires: libqalculate-lib
-Requires: libqalculate-license
-Requires: libqalculate-locales
-Requires: libqalculate-data
+Requires: libqalculate-bin = %{version}-%{release}
+Requires: libqalculate-data = %{version}-%{release}
+Requires: libqalculate-lib = %{version}-%{release}
+Requires: libqalculate-license = %{version}-%{release}
+Requires: libqalculate-locales = %{version}-%{release}
 BuildRequires : gettext
 BuildRequires : gmp-dev
 BuildRequires : intltool
@@ -37,8 +37,8 @@ plotting, and a user-friendly interface (GTK+ and CLI).
 %package bin
 Summary: bin components for the libqalculate package.
 Group: Binaries
-Requires: libqalculate-data
-Requires: libqalculate-license
+Requires: libqalculate-data = %{version}-%{release}
+Requires: libqalculate-license = %{version}-%{release}
 
 %description bin
 bin components for the libqalculate package.
@@ -55,10 +55,11 @@ data components for the libqalculate package.
 %package dev
 Summary: dev components for the libqalculate package.
 Group: Development
-Requires: libqalculate-lib
-Requires: libqalculate-bin
-Requires: libqalculate-data
-Provides: libqalculate-devel
+Requires: libqalculate-lib = %{version}-%{release}
+Requires: libqalculate-bin = %{version}-%{release}
+Requires: libqalculate-data = %{version}-%{release}
+Provides: libqalculate-devel = %{version}-%{release}
+Requires: libqalculate = %{version}-%{release}
 
 %description dev
 dev components for the libqalculate package.
@@ -75,8 +76,8 @@ doc components for the libqalculate package.
 %package lib
 Summary: lib components for the libqalculate package.
 Group: Libraries
-Requires: libqalculate-data
-Requires: libqalculate-license
+Requires: libqalculate-data = %{version}-%{release}
+Requires: libqalculate-license = %{version}-%{release}
 
 %description lib
 lib components for the libqalculate package.
@@ -105,23 +106,31 @@ locales components for the libqalculate package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1535491575
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1568076687
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1535491575
+export SOURCE_DATE_EPOCH=1568076687
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/libqalculate
-cp COPYING %{buildroot}/usr/share/doc/libqalculate/COPYING
+mkdir -p %{buildroot}/usr/share/package-licenses/libqalculate
+cp COPYING %{buildroot}/usr/share/package-licenses/libqalculate/COPYING
 %make_install
 %find_lang libqalculate
 
@@ -174,8 +183,8 @@ cp COPYING %{buildroot}/usr/share/doc/libqalculate/COPYING
 /usr/lib64/libqalculate.so.19.0.0
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/libqalculate/COPYING
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/libqalculate/COPYING
 
 %files locales -f libqalculate.lang
 %defattr(-,root,root,-)
