@@ -2,3 +2,4 @@ Configure miss: readline in -lreadline
 Configure miss: readline in -lreadline
 Configure miss: readline in -lreadline
 Configure miss: readline in -lreadline
+Configure miss: CFLocaleCopyPreferredLanguages
