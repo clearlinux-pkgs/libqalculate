@@ -4,7 +4,7 @@
 #
 Name     : libqalculate
 Version  : 3.7.0
-Release  : 7
+Release  : 8
 URL      : https://github.com/Qalculate/libqalculate/releases/download/v3.7.0/libqalculate-3.7.0.tar.gz
 Source0  : https://github.com/Qalculate/libqalculate/releases/download/v3.7.0/libqalculate-3.7.0.tar.gz
 Summary  : Multi-purpose desktop calculator
