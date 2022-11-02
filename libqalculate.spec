@@ -4,7 +4,7 @@
 #
 Name     : libqalculate
 Version  : 4.4.0
-Release  : 9
+Release  : 10
 URL      : https://github.com/Qalculate/libqalculate/releases/download/v4.4.0/libqalculate-4.4.0.tar.gz
 Source0  : https://github.com/Qalculate/libqalculate/releases/download/v4.4.0/libqalculate-4.4.0.tar.gz
 Summary  : libqalculate
